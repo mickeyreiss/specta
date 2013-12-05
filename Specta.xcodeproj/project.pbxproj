@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1670B35218504218009E28CB /* SPTRspecReporter.h in Headers */ = {isa = PBXBuildFile; fileRef = 1670B35018504217009E28CB /* SPTRspecReporter.h */; };
+		1670B35318504218009E28CB /* SPTRspecReporter.h in Headers */ = {isa = PBXBuildFile; fileRef = 1670B35018504217009E28CB /* SPTRspecReporter.h */; };
+		1670B35418504218009E28CB /* SPTRspecReporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1670B35118504218009E28CB /* SPTRspecReporter.m */; };
+		1670B35518504218009E28CB /* SPTRspecReporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1670B35118504218009E28CB /* SPTRspecReporter.m */; };
+		1670B358185117B0009E28CB /* SPTIndentedReporter.h in Headers */ = {isa = PBXBuildFile; fileRef = 1670B356185117AF009E28CB /* SPTIndentedReporter.h */; };
+		1670B359185117B0009E28CB /* SPTIndentedReporter.h in Headers */ = {isa = PBXBuildFile; fileRef = 1670B356185117AF009E28CB /* SPTIndentedReporter.h */; };
+		1670B35A185117B0009E28CB /* SPTIndentedReporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1670B357185117B0009E28CB /* SPTIndentedReporter.m */; };
+		1670B35B185117B0009E28CB /* SPTIndentedReporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1670B357185117B0009E28CB /* SPTIndentedReporter.m */; };
 		CD77236F1825A67A00719E93 /* SPTReporter.h in Headers */ = {isa = PBXBuildFile; fileRef = CD7723671825A67A00719E93 /* SPTReporter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CD7723701825A67A00719E93 /* SPTReporter.h in Headers */ = {isa = PBXBuildFile; fileRef = CD7723671825A67A00719E93 /* SPTReporter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CD7723711825A67A00719E93 /* SPTReporter.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7723681825A67A00719E93 /* SPTReporter.m */; };
@@ -159,6 +167,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1670B35018504217009E28CB /* SPTRspecReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPTRspecReporter.h; sourceTree = "<group>"; };
+		1670B35118504218009E28CB /* SPTRspecReporter.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.objc; path = SPTRspecReporter.m; sourceTree = "<group>"; tabWidth = 2; };
+		1670B356185117AF009E28CB /* SPTIndentedReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPTIndentedReporter.h; sourceTree = "<group>"; };
+		1670B357185117B0009E28CB /* SPTIndentedReporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPTIndentedReporter.m; sourceTree = "<group>"; };
 		CD7723671825A67A00719E93 /* SPTReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPTReporter.h; sourceTree = "<group>"; };
 		CD7723681825A67A00719E93 /* SPTReporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPTReporter.m; sourceTree = "<group>"; };
 		CDF76B461825B4BE008BA160 /* XCTestLog+Specta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XCTestLog+Specta.h"; sourceTree = "<group>"; };
@@ -189,7 +201,7 @@
 		E93B45E318205C77009F43A2 /* DSLTest4.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DSLTest4.m; sourceTree = "<group>"; };
 		E93B45E418205C77009F43A2 /* DSLTest5.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DSLTest5.m; sourceTree = "<group>"; };
 		E93B45E518205C77009F43A2 /* FailingSpecTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FailingSpecTest.m; sourceTree = "<group>"; };
-		E93B45E618205C77009F43A2 /* FocusedSpecTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FocusedSpecTest.m; sourceTree = "<group>"; };
+		E93B45E618205C77009F43A2 /* FocusedSpecTest.m */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.c.objc; path = FocusedSpecTest.m; sourceTree = "<group>"; tabWidth = 2; };
 		E93B45E818205C77009F43A2 /* TestHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestHelper.h; sourceTree = "<group>"; };
 		E93B45E918205C77009F43A2 /* TestHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestHelper.m; sourceTree = "<group>"; };
 		E93B45EC18205C77009F43A2 /* MiscTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MiscTest.m; sourceTree = "<group>"; };
@@ -419,8 +431,12 @@
 				CD7723681825A67A00719E93 /* SPTReporter.m */,
 				CDF76B5218260AA5008BA160 /* SPTXCTestReporter.h */,
 				CDF76B5318260AA5008BA160 /* SPTXCTestReporter.m */,
+				1670B356185117AF009E28CB /* SPTIndentedReporter.h */,
+				1670B357185117B0009E28CB /* SPTIndentedReporter.m */,
 				CDF76B4C1825C8B1008BA160 /* SPTNestedReporter.h */,
 				CDF76B4D1825C8B1008BA160 /* SPTNestedReporter.m */,
+				1670B35018504217009E28CB /* SPTRspecReporter.h */,
+				1670B35118504218009E28CB /* SPTRspecReporter.m */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -434,6 +450,7 @@
 			files = (
 				E93B45B618205BC0009F43A2 /* Specta.h in Headers */,
 				E93B45B718205BC0009F43A2 /* SpectaSupport.h in Headers */,
+				1670B358185117B0009E28CB /* SPTIndentedReporter.h in Headers */,
 				E93B45B818205BC0009F43A2 /* SpectaTypes.h in Headers */,
 				E93B45B918205BC0009F43A2 /* SpectaUtility.h in Headers */,
 				E93B45BA18205BC0009F43A2 /* SPTExample.h in Headers */,
@@ -447,6 +464,7 @@
 				E93B45BD18205BC0009F43A2 /* SPTSpec.h in Headers */,
 				E93B45BE18205BC0009F43A2 /* SPTXCTestCase.h in Headers */,
 				E93B45C018205BC1009F43A2 /* XCTestCase+Specta.h in Headers */,
+				1670B35218504218009E28CB /* SPTRspecReporter.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -456,6 +474,7 @@
 			files = (
 				E93B45C118205BC4009F43A2 /* Specta.h in Headers */,
 				E93B45C218205BC4009F43A2 /* SpectaSupport.h in Headers */,
+				1670B359185117B0009E28CB /* SPTIndentedReporter.h in Headers */,
 				E93B45C318205BC4009F43A2 /* SpectaTypes.h in Headers */,
 				E93B45C418205BC4009F43A2 /* SpectaUtility.h in Headers */,
 				E93B45C518205BC4009F43A2 /* SPTExample.h in Headers */,
@@ -469,6 +488,7 @@
 				E93B45C818205BC4009F43A2 /* SPTSpec.h in Headers */,
 				E93B45C918205BC5009F43A2 /* SPTXCTestCase.h in Headers */,
 				E93B45CB18205BC5009F43A2 /* XCTestCase+Specta.h in Headers */,
+				1670B35318504218009E28CB /* SPTRspecReporter.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -600,6 +620,7 @@
 				CDF76B4A1825B4BE008BA160 /* XCTestLog+Specta.m in Sources */,
 				E93B45AF18205B92009F43A2 /* SPTExampleGroup.m in Sources */,
 				E93B45B418205B92009F43A2 /* XCTestCase+Specta.m in Sources */,
+				1670B35418504218009E28CB /* SPTRspecReporter.m in Sources */,
 				E93B45AE18205B92009F43A2 /* SPTExample.m in Sources */,
 				CDF76B5618260AA5008BA160 /* SPTXCTestReporter.m in Sources */,
 				E93B45AD18205B92009F43A2 /* SpectaUtility.m in Sources */,
@@ -608,6 +629,7 @@
 				CD7723711825A67A00719E93 /* SPTReporter.m in Sources */,
 				E93B45B018205B92009F43A2 /* SPTSharedExampleGroups.m in Sources */,
 				E93B45B218205B92009F43A2 /* SPTXCTestCase.m in Sources */,
+				1670B35A185117B0009E28CB /* SPTIndentedReporter.m in Sources */,
 				E93B45AC18205B92009F43A2 /* Specta.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -661,6 +683,7 @@
 				CDF76B4B1825B4BE008BA160 /* XCTestLog+Specta.m in Sources */,
 				E93B45A618205B91009F43A2 /* SPTExampleGroup.m in Sources */,
 				E93B45AB18205B91009F43A2 /* XCTestCase+Specta.m in Sources */,
+				1670B35518504218009E28CB /* SPTRspecReporter.m in Sources */,
 				E93B45A518205B91009F43A2 /* SPTExample.m in Sources */,
 				CDF76B5718260AA5008BA160 /* SPTXCTestReporter.m in Sources */,
 				E93B45A418205B91009F43A2 /* SpectaUtility.m in Sources */,
@@ -669,6 +692,7 @@
 				CD7723721825A67A00719E93 /* SPTReporter.m in Sources */,
 				E93B45A718205B91009F43A2 /* SPTSharedExampleGroups.m in Sources */,
 				E93B45A918205B91009F43A2 /* SPTXCTestCase.m in Sources */,
+				1670B35B185117B0009E28CB /* SPTIndentedReporter.m in Sources */,
 				E93B45A318205B91009F43A2 /* Specta.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

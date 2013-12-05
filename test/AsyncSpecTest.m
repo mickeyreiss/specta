@@ -32,6 +32,28 @@ describe(@"group", ^{
 
 SpecEnd
 
+SpecBegin(ReporterExample)
+describe(@"tests", ^{
+    it(@"should fail", ^{
+        SPTAssertTrue(false);
+    });
+
+    it(@"should succeed", ^{
+        SPTAssertTrue(true);
+    });
+
+    xit(@"should be pending");
+    pending(@"should also be pending");
+
+    /*
+     fit(@"should be focused", ^{
+        SPTAssertTrue(true);
+    });
+     */
+});
+
+SpecEnd
+
 @interface AsyncSpecTest : XCTestCase; @end
 @implementation AsyncSpecTest
 

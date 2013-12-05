@@ -1,47 +1,9 @@
 #import "SPTNestedReporter.h"
 #import "XCTestRun+Specta.h"
 
-@interface SPTNestedReporter ()
-
-@property (readwrite, assign, nonatomic) NSInteger nestingLevel;
-@property (readwrite, assign, nonatomic) BOOL indentationEnabled;
-
-@end
-
 @implementation SPTNestedReporter
 
 #pragma mark - Printing
-
-- (NSString *)indentation {
-  // XCode does not strip whitespace from the beginning of lines that report an error. Indentation should only enabled for non-error text.
-
-  if (self.indentationEnabled) {
-    return [@"" stringByPaddingToLength:(self.nestingLevel * 2)
-                             withString:@" "
-                        startingAtIndex:0];
-  } else {
-    return @"";
-  }
-}
-
-- (void)withIndentationEnabled:(void(^)(void))block {
-  [self withIndentationEnabled:YES block:block];
-}
-
-- (void)withIndentationEnabled:(BOOL)indentationEnabled block:(void(^)(void))block {
-  BOOL originalValue = self.indentationEnabled;
-
-  self.indentationEnabled = indentationEnabled;
-  @try {
-    block();
-  } @finally {
-    self.indentationEnabled = originalValue;
-  }
-}
-
-- (void)printIndentation {
-  [self printString:self.indentation];
-}
 
 - (void)printTestSuiteHeader:(XCTestRun *)testRun {
   [self printIndentation];
@@ -119,12 +81,6 @@
 }
 
 #pragma mark - XCTestObserver
-
-- (void)startObserving {
-  [super startObserving];
-
-  self.nestingLevel = 0;
-}
 
 - (void)testSuiteDidStart:(XCTestRun *)testRun {
   [self withIndentationEnabled:^{

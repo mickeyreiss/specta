@@ -1,5 +1,5 @@
-#import "SPTReporter.h"
+#import "SPTIndentedReporter.h"
 
-@interface SPTNestedReporter : SPTReporter
+@interface SPTNestedReporter : SPTIndentedReporter
 
 @end
