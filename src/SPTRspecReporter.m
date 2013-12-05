@@ -17,8 +17,17 @@ static NSUInteger SPTRspecReporterPrintResultLineWidth = 60;
 
 @interface SPTRspecReporter ()
 
+// Accumulators
 @property (nonatomic, strong) NSMutableOrderedSet *pendingTests;
 @property (nonatomic, strong) NSMutableOrderedSet *failedTests;
+
+// Aggregate stats
+@property (nonatomic, assign) NSUInteger numberOfTests;
+@property (nonatomic, assign) NSUInteger numberOfFailures;
+@property (nonatomic, assign) NSUInteger numberOfExceptions;
+@property (nonatomic, assign) NSUInteger numberOfSkippedTests;
+@property (nonatomic, assign) NSUInteger numberOfPendingTests;
+@property (nonatomic, assign) NSTimeInterval totalDuration;
 
 @property (nonatomic, assign) NSUInteger printResultCounter;
 @property (nonatomic, assign, getter = wasATestSkipped) BOOL testWasSkipped;
@@ -34,6 +43,16 @@ static NSUInteger SPTRspecReporterPrintResultLineWidth = 60;
   self.failedTests = [NSMutableOrderedSet orderedSet];
 
   self.printResultCounter = 0;
+
+  XCTestRun * rootRun = self.runStack.firstObject;
+  NSUInteger numberOfSkippedTests = rootRun.spt_skippedTestCaseCount;
+  if (numberOfSkippedTests > 0) {
+    if ([SPTXCTestCase spt_focusedExamplesExist]) {
+      [self printLineWithFormat:@"There are focused tests! %u examples are being skipped.", numberOfSkippedTests];
+    } else {
+      [self printLineWithFormat:@"%u examples were skipped.", numberOfSkippedTests];
+    }
+  }
 }
 
 - (void)stopObserving {
@@ -68,13 +87,12 @@ static NSUInteger SPTRspecReporterPrintResultLineWidth = 60;
     return;
   }
 
+  SPTResult *result = [[SPTResult alloc] init];
+  result.testRun = testRun;
+  result.description = @"Test is marked as pending";
+
   if (testRun.spt_pendingTestCaseCount > 0) {
     [self printResult:@"*"];
-
-    SPTResult *result = [[SPTResult alloc] init];
-    result.testRun = testRun;
-    result.description = @"Test is marked as pending";
-
     [self.pendingTests addObject:result];
   } else {
     [self printResult:@"."];
@@ -95,16 +113,21 @@ static NSUInteger SPTRspecReporterPrintResultLineWidth = 60;
 }
 
 - (void)printSummary {
+  XCTestRun * rootRun = self.runStack.firstObject;
+  NSUInteger numberOfTests = rootRun.testCaseCount;
+  NSUInteger numberOfFailures = rootRun.totalFailureCount;
+  NSUInteger numberOfExceptions = rootRun.unexpectedExceptionCount;
+  NSUInteger numberOfPendingTests = rootRun.spt_pendingTestCaseCount;
+  NSTimeInterval totalDuration = rootRun.totalDuration;
+
   [self withIndentationEnabled:^{
-    if ([SPTXCTestCase spt_focusedExamplesExist]) {
-      [self printLine:@"Warning: there are focused tests!"];
-    }
 
-    [self printPendingSummary:self.pendingTests];
-    [self printFailedSummary:self.failedTests];
+    [self printPendingSummary];
+    [self printFailedSummary];
 
-    [self printLineWithFormat:@"Finished in %0.4f seconds", 1.2345];
-    [self printLineWithFormat:@"%d %@, %d %@, %d pending", 5, @"example", 2, @"failures", 3];
+    [self printLineWithFormat:@"Finished in %0.4f seconds", totalDuration];
+
+    [self printLineWithFormat:@"%d %@, %d %@, %d pending", numberOfTests, (numberOfTests == 1 ? @"example" : @"examples"), numberOfFailures, (numberOfFailures == 1 ? @"failure" : @"failures"), numberOfPendingTests];
 
     [self printLine];
 
@@ -119,11 +142,12 @@ static NSUInteger SPTRspecReporterPrintResultLineWidth = 60;
   }];
 }
 
-- (void)printPendingSummary:(NSOrderedSet *)tests {
+- (void)printPendingSummary {
   [self printLine:@"Pending:"];
 
+  NSOrderedSet *pendingTests = self.pendingTests;
 
-  [tests enumerateObjectsUsingBlock:^(SPTResult *testResult, NSUInteger idx, BOOL *stop) {
+  [pendingTests enumerateObjectsUsingBlock:^(SPTResult *testResult, NSUInteger idx, BOOL *stop) {
     NSAssert([testResult isKindOfClass:[SPTResult class]], @"set should only contain SPTResults objects");
     self.nestingLevel ++;
     [self printIndentation];
@@ -143,17 +167,18 @@ static NSUInteger SPTRspecReporterPrintResultLineWidth = 60;
   [self printLine];
 }
 
-- (void)printFailedSummary:(NSOrderedSet *)tests {
+- (void)printFailedSummary {
+  NSOrderedSet *failedTests = self.failedTests;
   [self printLine:@"Failures:"];
   [self printLine];
 
-  [tests enumerateObjectsUsingBlock:^(SPTResult *testResult, NSUInteger idx, BOOL *stop) {
+  [failedTests enumerateObjectsUsingBlock:^(SPTResult *testResult, NSUInteger idx, BOOL *stop) {
     NSAssert([testResult isKindOfClass:[SPTResult class]], @"set should only contain SPTResult objects");
     self.nestingLevel ++;
     [self printIndentation];
     [self printLineWithFormat:@"%u) %@", idx+1, testResult.description];
 
-       self.nestingLevel ++;
+    self.nestingLevel ++;
     [self printIndentation];
     [self printLineWithFormat:@"# %@:%u", testResult.filePath, testResult.lineNumber];
 
